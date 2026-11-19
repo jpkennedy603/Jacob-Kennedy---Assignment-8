@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3731603fbd143a3cc0654d3dda6125b8 {
+                    position: relative;
+                    width: 900.0px;
+                    min-width: 900.0px;
+                    height: 850.0px;
+                    min-height: 850.0px;
+
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>/*
+ * Glyphicons Halflings -- the icon font used by folium's default Awesome Markers
+ * (Icon(prefix="glyphicon")). Extracted from Bootstrap 3's glyphicon rules only.
+ *
+ * folium previously loaded netdna's bootstrap-glyphicons.css, which despite its
+ * name ships a full Bootstrap-3 base stylesheet (normalize reset + global `body`
+ * rules) that leaked onto the host page (GH-1820). This file provides just the
+ * @font-face and .glyphicon/.glyphicon-* rules needed for the markers, with no
+ * page-wide side effects. Font files are served from jsDelivr.
+ */
+@font-face{font-family:'Glyphicons Halflings';src:url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.eot');src:url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.woff') format('woff'),url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.ttf') format('truetype'),url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');}.glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;}
+.glyphicon-asterisk:before{content:"\2a";}
+.glyphicon-plus:before{content:"\2b";}
+.glyphicon-euro:before{content:"\20ac";}
+.glyphicon-minus:before{content:"\2212";}
+.glyphicon-cloud:before{content:"\2601";}
+.glyphicon-envelope:before{content:"\2709";}
+.glyphicon-pencil:before{content:"\270f";}
+.glyphicon-glass:before{content:"\e001";}
+.glyphicon-music:before{content:"\e002";}
+.glyphicon-search:before{content:"\e003";}
+.glyphicon-heart:before{content:"\e005";}
+.glyphicon-star:before{content:"\e006";}
+.glyphicon-star-empty:before{content:"\e007";}
+.glyphicon-user:before{content:"\e008";}
+.glyphicon-film:before{content:"\e009";}
+.glyphicon-th-large:before{content:"\e010";}
+.glyphicon-th:before{content:"\e011";}
+.glyphicon-th-list:before{content:"\e012";}
+.glyphicon-ok:before{content:"\e013";}
+.glyphicon-remove:before{content:"\e014";}
+.glyphicon-zoom-in:before{content:"\e015";}
+.glyphicon-zoom-out:before{content:"\e016";}
+.glyphicon-off:before{content:"\e017";}
+.glyphicon-signal:before{content:"\e018";}
+.glyphicon-cog:before{content:"\e019";}
+.glyphicon-trash:before{content:"\e020";}
+.glyphicon-home:before{content:"\e021";}
+.glyphicon-file:before{content:"\e022";}
+.glyphicon-time:before{content:"\e023";}
+.glyphicon-road:before{content:"\e024";}
+.glyphicon-download-alt:before{content:"\e025";}
+.glyphicon-download:before{content:"\e026";}
+.glyphicon-upload:before{content:"\e027";}
+.glyphicon-inbox:before{content:"\e028";}
+.glyphicon-play-circle:before{content:"\e029";}
+.glyphicon-repeat:before{content:"\e030";}
+.glyphicon-refresh:before{content:"\e031";}
+.glyphicon-list-alt:before{content:"\e032";}
+.glyphicon-flag:before{content:"\e034";}
+.glyphicon-headphones:before{content:"\e035";}
+.glyphicon-volume-off:before{content:"\e036";}
+.glyphicon-volume-down:before{content:"\e037";}
+.glyphicon-volume-up:before{content:"\e038";}
+.glyphicon-qrcode:before{content:"\e039";}
+.glyphicon-barcode:before{content:"\e040";}
+.glyphicon-tag:before{content:"\e041";}
+.glyphicon-tags:before{content:"\e042";}
+.glyphicon-book:before{content:"\e043";}
+.glyphicon-print:before{content:"\e045";}
+.glyphicon-font:before{content:"\e047";}
+.glyphicon-bold:before{content:"\e048";}
+.glyphicon-italic:before{content:"\e049";}
+.glyphicon-text-height:before{content:"\e050";}
+.glyphicon-text-width:before{content:"\e051";}
+.glyphicon-align-left:before{content:"\e052";}
+.glyphicon-align-center:before{content:"\e053";}
+.glyphicon-align-right:before{content:"\e054";}
+.glyphicon-align-justify:before{content:"\e055";}
+.glyphicon-list:before{content:"\e056";}
+.glyphicon-indent-left:before{content:"\e057";}
+.glyphicon-indent-right:before{content:"\e058";}
+.glyphicon-facetime-video:before{content:"\e059";}
+.glyphicon-picture:before{content:"\e060";}
+.glyphicon-map-marker:before{content:"\e062";}
+.glyphicon-adjust:before{content:"\e063";}
+.glyphicon-tint:before{content:"\e064";}
+.glyphicon-edit:before{content:"\e065";}
+.glyphicon-share:before{content:"\e066";}
+.glyphicon-check:before{content:"\e067";}
+.glyphicon-move:before{content:"\e068";}
+.glyphicon-step-backward:before{content:"\e069";}
+.glyphicon-fast-backward:before{content:"\e070";}
+.glyphicon-backward:before{content:"\e071";}
+.glyphicon-play:before{content:"\e072";}
+.glyphicon-pause:before{content:"\e073";}
+.glyphicon-stop:before{content:"\e074";}
+.glyphicon-forward:before{content:"\e075";}
+.glyphicon-fast-forward:before{content:"\e076";}
+.glyphicon-step-forward:before{content:"\e077";}
+.glyphicon-eject:before{content:"\e078";}
+.glyphicon-chevron-left:before{content:"\e079";}
+.glyphicon-chevron-right:before{content:"\e080";}
+.glyphicon-plus-sign:before{content:"\e081";}
+.glyphicon-minus-sign:before{content:"\e082";}
+.glyphicon-remove-sign:before{content:"\e083";}
+.glyphicon-ok-sign:before{content:"\e084";}
+.glyphicon-question-sign:before{content:"\e085";}
+.glyphicon-info-sign:before{content:"\e086";}
+.glyphicon-screenshot:before{content:"\e087";}
+.glyphicon-remove-circle:before{content:"\e088";}
+.glyphicon-ok-circle:before{content:"\e089";}
+.glyphicon-ban-circle:before{content:"\e090";}
+.glyphicon-arrow-left:before{content:"\e091";}
+.glyphicon-arrow-right:before{content:"\e092";}
+.glyphicon-arrow-up:before{content:"\e093";}
+.glyphicon-arrow-down:before{content:"\e094";}
+.glyphicon-share-alt:before{content:"\e095";}
+.glyphicon-resize-full:before{content:"\e096";}
+.glyphicon-resize-small:before{content:"\e097";}
+.glyphicon-exclamation-sign:before{content:"\e101";}
+.glyphicon-gift:before{content:"\e102";}
+.glyphicon-leaf:before{content:"\e103";}
+.glyphicon-eye-open:before{content:"\e105";}
+.glyphicon-eye-close:before{content:"\e106";}
+.glyphicon-warning-sign:before{content:"\e107";}
+.glyphicon-plane:before{content:"\e108";}
+.glyphicon-random:before{content:"\e110";}
+.glyphicon-comment:before{content:"\e111";}
+.glyphicon-magnet:before{content:"\e112";}
+.glyphicon-chevron-up:before{content:"\e113";}
+.glyphicon-chevron-down:before{content:"\e114";}
+.glyphicon-retweet:before{content:"\e115";}
+.glyphicon-shopping-cart:before{content:"\e116";}
+.glyphicon-folder-close:before{content:"\e117";}
+.glyphicon-folder-open:before{content:"\e118";}
+.glyphicon-resize-vertical:before{content:"\e119";}
+.glyphicon-resize-horizontal:before{content:"\e120";}
+.glyphicon-hdd:before{content:"\e121";}
+.glyphicon-bullhorn:before{content:"\e122";}
+.glyphicon-certificate:before{content:"\e124";}
+.glyphicon-thumbs-up:before{content:"\e125";}
+.glyphicon-thumbs-down:before{content:"\e126";}
+.glyphicon-hand-right:before{content:"\e127";}
+.glyphicon-hand-left:before{content:"\e128";}
+.glyphicon-hand-up:before{content:"\e129";}
+.glyphicon-hand-down:before{content:"\e130";}
+.glyphicon-circle-arrow-right:before{content:"\e131";}
+.glyphicon-circle-arrow-left:before{content:"\e132";}
+.glyphicon-circle-arrow-up:before{content:"\e133";}
+.glyphicon-circle-arrow-down:before{content:"\e134";}
+.glyphicon-globe:before{content:"\e135";}
+.glyphicon-tasks:before{content:"\e137";}
+.glyphicon-filter:before{content:"\e138";}
+.glyphicon-fullscreen:before{content:"\e140";}
+.glyphicon-dashboard:before{content:"\e141";}
+.glyphicon-heart-empty:before{content:"\e143";}
+.glyphicon-link:before{content:"\e144";}
+.glyphicon-phone:before{content:"\e145";}
+.glyphicon-usd:before{content:"\e148";}
+.glyphicon-gbp:before{content:"\e149";}
+.glyphicon-sort:before{content:"\e150";}
+.glyphicon-sort-by-alphabet:before{content:"\e151";}
+.glyphicon-sort-by-alphabet-alt:before{content:"\e152";}
+.glyphicon-sort-by-order:before{content:"\e153";}
+.glyphicon-sort-by-order-alt:before{content:"\e154";}
+.glyphicon-sort-by-attributes:before{content:"\e155";}
+.glyphicon-sort-by-attributes-alt:before{content:"\e156";}
+.glyphicon-unchecked:before{content:"\e157";}
+.glyphicon-expand:before{content:"\e158";}
+.glyphicon-collapse-down:before{content:"\e159";}
+.glyphicon-collapse-up:before{content:"\e160";}
+.glyphicon-log-in:before{content:"\e161";}
+.glyphicon-flash:before{content:"\e162";}
+.glyphicon-log-out:before{content:"\e163";}
+.glyphicon-new-window:before{content:"\e164";}
+.glyphicon-record:before{content:"\e165";}
+.glyphicon-save:before{content:"\e166";}
+.glyphicon-open:before{content:"\e167";}
+.glyphicon-saved:before{content:"\e168";}
+.glyphicon-import:before{content:"\e169";}
+.glyphicon-export:before{content:"\e170";}
+.glyphicon-send:before{content:"\e171";}
+.glyphicon-floppy-disk:before{content:"\e172";}
+.glyphicon-floppy-saved:before{content:"\e173";}
+.glyphicon-floppy-remove:before{content:"\e174";}
+.glyphicon-floppy-save:before{content:"\e175";}
+.glyphicon-floppy-open:before{content:"\e176";}
+.glyphicon-credit-card:before{content:"\e177";}
+.glyphicon-transfer:before{content:"\e178";}
+.glyphicon-cutlery:before{content:"\e179";}
+.glyphicon-header:before{content:"\e180";}
+.glyphicon-compressed:before{content:"\e181";}
+.glyphicon-earphone:before{content:"\e182";}
+.glyphicon-phone-alt:before{content:"\e183";}
+.glyphicon-tower:before{content:"\e184";}
+.glyphicon-stats:before{content:"\e185";}
+.glyphicon-sd-video:before{content:"\e186";}
+.glyphicon-hd-video:before{content:"\e187";}
+.glyphicon-subtitles:before{content:"\e188";}
+.glyphicon-sound-stereo:before{content:"\e189";}
+.glyphicon-sound-dolby:before{content:"\e190";}
+.glyphicon-sound-5-1:before{content:"\e191";}
+.glyphicon-sound-6-1:before{content:"\e192";}
+.glyphicon-sound-7-1:before{content:"\e193";}
+.glyphicon-copyright-mark:before{content:"\e194";}
+.glyphicon-registration-mark:before{content:"\e195";}
+.glyphicon-cloud-download:before{content:"\e197";}
+.glyphicon-cloud-upload:before{content:"\e198";}
+.glyphicon-tree-conifer:before{content:"\e199";}
+.glyphicon-tree-deciduous:before{content:"\e200";}
+.glyphicon-briefcase:before{content:"\1f4bc";}
+.glyphicon-calendar:before{content:"\1f4c5";}
+.glyphicon-pushpin:before{content:"\1f4cc";}
+.glyphicon-paperclip:before{content:"\1f4ce";}
+.glyphicon-camera:before{content:"\1f4f7";}
+.glyphicon-lock:before{content:"\1f512";}
+.glyphicon-bell:before{content:"\1f514";}
+.glyphicon-bookmark:before{content:"\1f516";}
+.glyphicon-fire:before{content:"\1f525";}
+.glyphicon-wrench:before{content:"\1f527";}
+</style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+    
+            
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_3731603fbd143a3cc0654d3dda6125b8" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3731603fbd143a3cc0654d3dda6125b8 = L.map(
+                "map_3731603fbd143a3cc0654d3dda6125b8",
+                {
+                    center: [34.91841123184445, -23.367448291959324],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_4b4aac83774d6c9ba134771d1ee3cef9 = L.tileLayer(
+                "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png?key=cb1_5cbb_1_ffe0558cdc347e799e0e309b",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_4b4aac83774d6c9ba134771d1ee3cef9.addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var marker_51a336dc97ee4f64fbb90110664d09d7 = L.marker(
+                [36.102537171032, -115.178056422238],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_4878a9018396015a7fa40c2b47356823 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_758d622dfd6637f38538625b4c7f1449 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3e64fcde699433a28269f22b88ab1e9 = $(`<div id="html_a3e64fcde699433a28269f22b88ab1e9" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> T-Mobile Arena<br><b>Address:</b> 3780 S Las Vegas Blvd, Las Vegas, NV 89158<br><b>City/Region:</b> Las Vegas, NV</div>`)[0];
+                popup_758d622dfd6637f38538625b4c7f1449.setContent(html_a3e64fcde699433a28269f22b88ab1e9);
+            
+        
+
+        marker_51a336dc97ee4f64fbb90110664d09d7.bindPopup(popup_758d622dfd6637f38538625b4c7f1449)
+        ;
+
+        
+    
+    
+            marker_51a336dc97ee4f64fbb90110664d09d7.bindTooltip(
+                `<div>
+                     T-Mobile Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_51a336dc97ee4f64fbb90110664d09d7.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_51a336dc97ee4f64fbb90110664d09d7.setIcon(icon_4878a9018396015a7fa40c2b47356823);
+            
+    
+            var marker_4a6fbd513e5f2f23409771003a291cd0 = L.marker(
+                [37.767915300917, -122.387349615985],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_f247b49add4dd8567595d95dfdce8e33 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b4e350c9f70fa4d1a1127704b2515c6a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_db2e0e63d3af07f34b39475cec02a54f = $(`<div id="html_db2e0e63d3af07f34b39475cec02a54f" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Chase Center<br><b>Address:</b> 1 Warriors Way, San Francisco, CA 94158<br><b>City/Region:</b> San Francisco, CA</div>`)[0];
+                popup_b4e350c9f70fa4d1a1127704b2515c6a.setContent(html_db2e0e63d3af07f34b39475cec02a54f);
+            
+        
+
+        marker_4a6fbd513e5f2f23409771003a291cd0.bindPopup(popup_b4e350c9f70fa4d1a1127704b2515c6a)
+        ;
+
+        
+    
+    
+            marker_4a6fbd513e5f2f23409771003a291cd0.bindTooltip(
+                `<div>
+                     Chase Center
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_4a6fbd513e5f2f23409771003a291cd0.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_4a6fbd513e5f2f23409771003a291cd0.setIcon(icon_f247b49add4dd8567595d95dfdce8e33);
+            
+    
+            var marker_ef7e6660aa4d7f9a61266cc5decc9e6c = L.marker(
+                [33.958284903298, -118.341901161867],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_bde74040e6bb3a30e30b344789b11a9d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_36464b0cd3cc54dd87a8adee00c62166 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6fa11e47bb6784206ccabda626db1bff = $(`<div id="html_6fa11e47bb6784206ccabda626db1bff" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Kia Forum<br><b>Address:</b> 3900 W Manchester Blvd, Inglewood, CA 90305<br><b>City/Region:</b> Inglewood, CA</div>`)[0];
+                popup_36464b0cd3cc54dd87a8adee00c62166.setContent(html_6fa11e47bb6784206ccabda626db1bff);
+            
+        
+
+        marker_ef7e6660aa4d7f9a61266cc5decc9e6c.bindPopup(popup_36464b0cd3cc54dd87a8adee00c62166)
+        ;
+
+        
+    
+    
+            marker_ef7e6660aa4d7f9a61266cc5decc9e6c.bindTooltip(
+                `<div>
+                     Kia Forum
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_ef7e6660aa4d7f9a61266cc5decc9e6c.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_ef7e6660aa4d7f9a61266cc5decc9e6c.setIcon(icon_bde74040e6bb3a30e30b344789b11a9d);
+            
+    
+            var marker_949bda3bfcb4e22bc0923aaef09098b3 = L.marker(
+                [47.622089207928, -122.354654158631],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_3aecbf61b45eb5584ce40048254e025b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf09d886cdb8f893c92046041fb8c156 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9f59a294635e0f309672d8d73795071 = $(`<div id="html_a9f59a294635e0f309672d8d73795071" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Climate Pledge Arena<br><b>Address:</b> 334 1st Ave N, Seattle, WA 98109<br><b>City/Region:</b> Seattle, WA</div>`)[0];
+                popup_bf09d886cdb8f893c92046041fb8c156.setContent(html_a9f59a294635e0f309672d8d73795071);
+            
+        
+
+        marker_949bda3bfcb4e22bc0923aaef09098b3.bindPopup(popup_bf09d886cdb8f893c92046041fb8c156)
+        ;
+
+        
+    
+    
+            marker_949bda3bfcb4e22bc0923aaef09098b3.bindTooltip(
+                `<div>
+                     Climate Pledge Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_949bda3bfcb4e22bc0923aaef09098b3.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_949bda3bfcb4e22bc0923aaef09098b3.setIcon(icon_3aecbf61b45eb5584ce40048254e025b);
+            
+    
+            var marker_09b9f8b56e93c955c9a0ecd37aae7c03 = L.marker(
+                [40.750521081849, -73.993464277123],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_e31fe0d02d31774d27ae507252a685ae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cd0357ac19fe87e0de8b6614ceed4841 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_350e14eb3f33f6923d52c0b8ea8ac0ca = $(`<div id="html_350e14eb3f33f6923d52c0b8ea8ac0ca" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Madison Square Garden<br><b>Address:</b> 4 Pennsylvania Plaza, New York, NY 10001<br><b>City/Region:</b> New York, NY</div>`)[0];
+                popup_cd0357ac19fe87e0de8b6614ceed4841.setContent(html_350e14eb3f33f6923d52c0b8ea8ac0ca);
+            
+        
+
+        marker_09b9f8b56e93c955c9a0ecd37aae7c03.bindPopup(popup_cd0357ac19fe87e0de8b6614ceed4841)
+        ;
+
+        
+    
+    
+            marker_09b9f8b56e93c955c9a0ecd37aae7c03.bindTooltip(
+                `<div>
+                     Madison Square Garden
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_09b9f8b56e93c955c9a0ecd37aae7c03.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_09b9f8b56e93c955c9a0ecd37aae7c03.setIcon(icon_e31fe0d02d31774d27ae507252a685ae);
+            
+    
+            var marker_81565220cf9cb5914e08921865424f67 = L.marker(
+                [25.781510325978, -80.18851181501],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_27ebaf12a23c65ee24e1aee5284e075c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c530f86bc3a0f749db50d12920e9e266 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8cdd20c52da8fce91bf4e6734114ec2a = $(`<div id="html_8cdd20c52da8fce91bf4e6734114ec2a" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Kaseya Center<br><b>Address:</b> 601 Biscayne Blvd, Miami, FL 33132<br><b>City/Region:</b> Miami, FL</div>`)[0];
+                popup_c530f86bc3a0f749db50d12920e9e266.setContent(html_8cdd20c52da8fce91bf4e6734114ec2a);
+            
+        
+
+        marker_81565220cf9cb5914e08921865424f67.bindPopup(popup_c530f86bc3a0f749db50d12920e9e266)
+        ;
+
+        
+    
+    
+            marker_81565220cf9cb5914e08921865424f67.bindTooltip(
+                `<div>
+                     Kaseya Center
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_81565220cf9cb5914e08921865424f67.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_81565220cf9cb5914e08921865424f67.setIcon(icon_27ebaf12a23c65ee24e1aee5284e075c);
+            
+    
+            var marker_e4aac323a9bad1e1f5b701585f9b02bc = L.marker(
+                [43.643406007273, -79.37887897686],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_96f8e87e3cd7fbda144847abbea202d3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5602e8ccc8efe1e1ef817349941d84e1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_65195d914e8e2ae3277cd1f6d331a151 = $(`<div id="html_65195d914e8e2ae3277cd1f6d331a151" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Scotiabank Arena<br><b>Address:</b> 40 Bay St, Toronto, ON M5J 2X2<br><b>City/Region:</b> Toronto, ON</div>`)[0];
+                popup_5602e8ccc8efe1e1ef817349941d84e1.setContent(html_65195d914e8e2ae3277cd1f6d331a151);
+            
+        
+
+        marker_e4aac323a9bad1e1f5b701585f9b02bc.bindPopup(popup_5602e8ccc8efe1e1ef817349941d84e1)
+        ;
+
+        
+    
+    
+            marker_e4aac323a9bad1e1f5b701585f9b02bc.bindTooltip(
+                `<div>
+                     Scotiabank Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_e4aac323a9bad1e1f5b701585f9b02bc.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_e4aac323a9bad1e1f5b701585f9b02bc.setIcon(icon_96f8e87e3cd7fbda144847abbea202d3);
+            
+    
+            var marker_8f77f93058314eb5ed5598fd8e981df9 = L.marker(
+                [41.880676723961, -87.674182088894],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_ef0c2800a9b63147a53e80ab94375034 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c34d51695ab3cfcc19c2d3f516ee19f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_696135df9c017d58e19a9571c9b3d97b = $(`<div id="html_696135df9c017d58e19a9571c9b3d97b" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> United Center<br><b>Address:</b> 1901 W Madison St, Chicago, IL 60612<br><b>City/Region:</b> Chicago, IL</div>`)[0];
+                popup_0c34d51695ab3cfcc19c2d3f516ee19f.setContent(html_696135df9c017d58e19a9571c9b3d97b);
+            
+        
+
+        marker_8f77f93058314eb5ed5598fd8e981df9.bindPopup(popup_0c34d51695ab3cfcc19c2d3f516ee19f)
+        ;
+
+        
+    
+    
+            marker_8f77f93058314eb5ed5598fd8e981df9.bindTooltip(
+                `<div>
+                     United Center
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_8f77f93058314eb5ed5598fd8e981df9.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_8f77f93058314eb5ed5598fd8e981df9.setIcon(icon_ef0c2800a9b63147a53e80ab94375034);
+            
+    
+            var marker_a43558d6013003149ee5410a93217576 = L.marker(
+                [51.501744914117, 0.007946041179],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_aaaa86a02c2af77d5fe112defdb0523f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_515d7d1dc30938c5bdedd6aee972c2b6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2a7cad21a726a5c168cd76a8f8947d0c = $(`<div id="html_2a7cad21a726a5c168cd76a8f8947d0c" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> The O2<br><b>Address:</b> Peninsula Square, London SE10 0DX<br><b>City/Region:</b> London, UK</div>`)[0];
+                popup_515d7d1dc30938c5bdedd6aee972c2b6.setContent(html_2a7cad21a726a5c168cd76a8f8947d0c);
+            
+        
+
+        marker_a43558d6013003149ee5410a93217576.bindPopup(popup_515d7d1dc30938c5bdedd6aee972c2b6)
+        ;
+
+        
+    
+    
+            marker_a43558d6013003149ee5410a93217576.bindTooltip(
+                `<div>
+                     The O2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_a43558d6013003149ee5410a93217576.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_a43558d6013003149ee5410a93217576.setIcon(icon_aaaa86a02c2af77d5fe112defdb0523f);
+            
+    
+            var marker_7913598559bea5142bbf32aebe0a93c9 = L.marker(
+                [53.486407591722, -2.200020841416],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_a129e593407e9d50342cdf63b26f5cfe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_057ccf5bf548bd9142d548e4204b0cfa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_940a99b49030e803e0a4d0712a04331e = $(`<div id="html_940a99b49030e803e0a4d0712a04331e" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Co-op Live<br><b>Address:</b> 1 Sport City Way, Manchester M11 3DL<br><b>City/Region:</b> Manchester, UK</div>`)[0];
+                popup_057ccf5bf548bd9142d548e4204b0cfa.setContent(html_940a99b49030e803e0a4d0712a04331e);
+            
+        
+
+        marker_7913598559bea5142bbf32aebe0a93c9.bindPopup(popup_057ccf5bf548bd9142d548e4204b0cfa)
+        ;
+
+        
+    
+    
+            marker_7913598559bea5142bbf32aebe0a93c9.bindTooltip(
+                `<div>
+                     Co-op Live
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_7913598559bea5142bbf32aebe0a93c9.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_7913598559bea5142bbf32aebe0a93c9.setIcon(icon_a129e593407e9d50342cdf63b26f5cfe);
+            
+    
+            var marker_ca9e2e4539f460f9641b14910832b1de = L.marker(
+                [59.293193, 18.082616],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_51b309c2f170a126e3818caa7b477f13 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a56b94a5ec8db1043e2b4c8053b61773 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cc36920b2805b6db74fce4094f3f17c7 = $(`<div id="html_cc36920b2805b6db74fce4094f3f17c7" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Avicii Arena<br><b>Address:</b> Globenområdet 2, 121 77 Johanneshov<br><b>City/Region:</b> Stockholm, Sweden</div>`)[0];
+                popup_a56b94a5ec8db1043e2b4c8053b61773.setContent(html_cc36920b2805b6db74fce4094f3f17c7);
+            
+        
+
+        marker_ca9e2e4539f460f9641b14910832b1de.bindPopup(popup_a56b94a5ec8db1043e2b4c8053b61773)
+        ;
+
+        
+    
+    
+            marker_ca9e2e4539f460f9641b14910832b1de.bindTooltip(
+                `<div>
+                     Avicii Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_ca9e2e4539f460f9641b14910832b1de.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_ca9e2e4539f460f9641b14910832b1de.setIcon(icon_51b309c2f170a126e3818caa7b477f13);
+            
+    
+            var marker_52ee2338d92f956bf6155234fa122fdc = L.marker(
+                [45.402022290696, 9.142678235258],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_9c7abbb6c7918c3d75f0bcada781e606 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_882cf69e017a4764cd0d5a4970f01168 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a665fef51115191e279fe89e4bbbf34f = $(`<div id="html_a665fef51115191e279fe89e4bbbf34f" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Unipol Forum<br><b>Address:</b> Via Giuseppe di Vittorio 6, 20090 Assago MI<br><b>City/Region:</b> Milan, Italy</div>`)[0];
+                popup_882cf69e017a4764cd0d5a4970f01168.setContent(html_a665fef51115191e279fe89e4bbbf34f);
+            
+        
+
+        marker_52ee2338d92f956bf6155234fa122fdc.bindPopup(popup_882cf69e017a4764cd0d5a4970f01168)
+        ;
+
+        
+    
+    
+            marker_52ee2338d92f956bf6155234fa122fdc.bindTooltip(
+                `<div>
+                     Unipol Forum
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_52ee2338d92f956bf6155234fa122fdc.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_52ee2338d92f956bf6155234fa122fdc.setIcon(icon_9c7abbb6c7918c3d75f0bcada781e606);
+            
+    
+            var marker_9ba2147d288713c1e377750c192e64c5 = L.marker(
+                [41.361951665656, 2.152386234213],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_038c01903feaf33bc3934a6b05a889f1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_072cd41452f1ed20edefd49d6b1902ce = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_38bec5ca0131ad85d6a93644d0f9e734 = $(`<div id="html_38bec5ca0131ad85d6a93644d0f9e734" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Palau Sant Jordi<br><b>Address:</b> Passeig Olímpic, 5-7, 08038 Barcelona<br><b>City/Region:</b> Barcelona, Spain</div>`)[0];
+                popup_072cd41452f1ed20edefd49d6b1902ce.setContent(html_38bec5ca0131ad85d6a93644d0f9e734);
+            
+        
+
+        marker_9ba2147d288713c1e377750c192e64c5.bindPopup(popup_072cd41452f1ed20edefd49d6b1902ce)
+        ;
+
+        
+    
+    
+            marker_9ba2147d288713c1e377750c192e64c5.bindTooltip(
+                `<div>
+                     Palau Sant Jordi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_9ba2147d288713c1e377750c192e64c5.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_9ba2147d288713c1e377750c192e64c5.setIcon(icon_038c01903feaf33bc3934a6b05a889f1);
+            
+    
+            var marker_c03e8af3e8bc7e1485382cfe1ff5264e = L.marker(
+                [52.505722992358, 13.443210382687],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_8b1eb7d95d52529ac390a33be1a957ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f4d599652378969bf0878f9d1ef52e5d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7996aea88cd5e0d9530ff44812eecdd = $(`<div id="html_b7996aea88cd5e0d9530ff44812eecdd" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Uber Arena<br><b>Address:</b> Uber-Platz 1, 10243 Berlin<br><b>City/Region:</b> Berlin, Germany</div>`)[0];
+                popup_f4d599652378969bf0878f9d1ef52e5d.setContent(html_b7996aea88cd5e0d9530ff44812eecdd);
+            
+        
+
+        marker_c03e8af3e8bc7e1485382cfe1ff5264e.bindPopup(popup_f4d599652378969bf0878f9d1ef52e5d)
+        ;
+
+        
+    
+    
+            marker_c03e8af3e8bc7e1485382cfe1ff5264e.bindTooltip(
+                `<div>
+                     Uber Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_c03e8af3e8bc7e1485382cfe1ff5264e.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_c03e8af3e8bc7e1485382cfe1ff5264e.setIcon(icon_8b1eb7d95d52529ac390a33be1a957ee);
+            
+    
+            var marker_a329d0a8ab1bdb98d985148141dec9f7 = L.marker(
+                [52.313752934483, 4.937708249752],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_89bba27b1078af5338f05803e5f92e4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf0cab6be0a956c72add42bf276f5518 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52e9c60ac9b5e314149a42282dfb442e = $(`<div id="html_52e9c60ac9b5e314149a42282dfb442e" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Ziggo Dome<br><b>Address:</b> De Passage 100, 1101 AX Amsterdam<br><b>City/Region:</b> Amsterdam, Netherlands</div>`)[0];
+                popup_bf0cab6be0a956c72add42bf276f5518.setContent(html_52e9c60ac9b5e314149a42282dfb442e);
+            
+        
+
+        marker_a329d0a8ab1bdb98d985148141dec9f7.bindPopup(popup_bf0cab6be0a956c72add42bf276f5518)
+        ;
+
+        
+    
+    
+            marker_a329d0a8ab1bdb98d985148141dec9f7.bindTooltip(
+                `<div>
+                     Ziggo Dome
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_a329d0a8ab1bdb98d985148141dec9f7.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_a329d0a8ab1bdb98d985148141dec9f7.setIcon(icon_89bba27b1078af5338f05803e5f92e4a);
+            
+    
+            var marker_34827a725350a8a8791fe5c3de851177 = L.marker(
+                [51.231126036137, 4.441220212933],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_09b113ecb1daf4fc825ba69bcc9a15a3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_994988ad78d9ab4df53ab3cf340fbe2b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_55c89beb9fc8ba6e9dbf8696e7bb73b0 = $(`<div id="html_55c89beb9fc8ba6e9dbf8696e7bb73b0" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Sportpaleis (AFAS Dome)<br><b>Address:</b> Schijnpoortweg 119, 2170 Antwerpen<br><b>City/Region:</b> Antwerp, Belgium</div>`)[0];
+                popup_994988ad78d9ab4df53ab3cf340fbe2b.setContent(html_55c89beb9fc8ba6e9dbf8696e7bb73b0);
+            
+        
+
+        marker_34827a725350a8a8791fe5c3de851177.bindPopup(popup_994988ad78d9ab4df53ab3cf340fbe2b)
+        ;
+
+        
+    
+    
+            marker_34827a725350a8a8791fe5c3de851177.bindTooltip(
+                `<div>
+                     Sportpaleis (AFAS Dome)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_34827a725350a8a8791fe5c3de851177.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_34827a725350a8a8791fe5c3de851177.setIcon(icon_09b113ecb1daf4fc825ba69bcc9a15a3);
+            
+    
+            var marker_db12766b75daa64440315781452301c6 = L.marker(
+                [45.768429979574, 4.979889004016],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_201f749eee11abd871fffea8be7d855b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9c1b67e0a363d89c0cfd3dfff4ce692b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bed473ee713350d43ca89bb0341fe3d2 = $(`<div id="html_bed473ee713350d43ca89bb0341fe3d2" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> LDLC Arena<br><b>Address:</b> 5 Avenue Simone Veil, 69150 Décines-Charpieu<br><b>City/Region:</b> Lyon, France</div>`)[0];
+                popup_9c1b67e0a363d89c0cfd3dfff4ce692b.setContent(html_bed473ee713350d43ca89bb0341fe3d2);
+            
+        
+
+        marker_db12766b75daa64440315781452301c6.bindPopup(popup_9c1b67e0a363d89c0cfd3dfff4ce692b)
+        ;
+
+        
+    
+    
+            marker_db12766b75daa64440315781452301c6.bindTooltip(
+                `<div>
+                     LDLC Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_db12766b75daa64440315781452301c6.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_db12766b75daa64440315781452301c6.setIcon(icon_201f749eee11abd871fffea8be7d855b);
+            
+    
+            var marker_199c7ca2e467cb740c66d495d4033388 = L.marker(
+                [48.839222979191, 2.377769994725],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_eca598d70c4821d5d3dad466e73daf0b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2e6f46e67b003b38bc4977d9106f21d3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f03b07f67949fea11bccfae1ec09b41 = $(`<div id="html_2f03b07f67949fea11bccfae1ec09b41" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Accor Arena<br><b>Address:</b> 8 Boulevard de Bercy, 75012 Paris<br><b>City/Region:</b> Paris, France</div>`)[0];
+                popup_2e6f46e67b003b38bc4977d9106f21d3.setContent(html_2f03b07f67949fea11bccfae1ec09b41);
+            
+        
+
+        marker_199c7ca2e467cb740c66d495d4033388.bindPopup(popup_2e6f46e67b003b38bc4977d9106f21d3)
+        ;
+
+        
+    
+    
+            marker_199c7ca2e467cb740c66d495d4033388.bindTooltip(
+                `<div>
+                     Accor Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_199c7ca2e467cb740c66d495d4033388.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_199c7ca2e467cb740c66d495d4033388.setIcon(icon_eca598d70c4821d5d3dad466e73daf0b);
+            
+    
+            var marker_222c874a624e9ab31655b6cfe5c58c0f = L.marker(
+                [-37.818248797123, 144.948514888505],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_3feff81b716b0f600211c0ab9c9a2cb6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_92834d95626e80ccb7d21eb9aa7a7b2b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4f2c9671c9b219d6a0656a41eb2ca5ed = $(`<div id="html_4f2c9671c9b219d6a0656a41eb2ca5ed" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Marvel Stadium<br><b>Address:</b> 740 Bourke St, Docklands VIC 3008<br><b>City/Region:</b> Melbourne, VIC</div>`)[0];
+                popup_92834d95626e80ccb7d21eb9aa7a7b2b.setContent(html_4f2c9671c9b219d6a0656a41eb2ca5ed);
+            
+        
+
+        marker_222c874a624e9ab31655b6cfe5c58c0f.bindPopup(popup_92834d95626e80ccb7d21eb9aa7a7b2b)
+        ;
+
+        
+    
+    
+            marker_222c874a624e9ab31655b6cfe5c58c0f.bindTooltip(
+                `<div>
+                     Marvel Stadium
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_222c874a624e9ab31655b6cfe5c58c0f.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_222c874a624e9ab31655b6cfe5c58c0f.setIcon(icon_3feff81b716b0f600211c0ab9c9a2cb6);
+            
+    
+            var marker_22ca18d0c0b1f3cd2733de83235074ae = L.marker(
+                [-27.464867051442, 153.009621423208],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_1a54d40d6338320376bf47438e973842 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_52386638ec92294313a7290b994910da = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e58d1a43e582da727fef2bd03559cfd1 = $(`<div id="html_e58d1a43e582da727fef2bd03559cfd1" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Suncorp Stadium<br><b>Address:</b> 40 Castlemaine St, Milton QLD 4064<br><b>City/Region:</b> Brisbane, QLD</div>`)[0];
+                popup_52386638ec92294313a7290b994910da.setContent(html_e58d1a43e582da727fef2bd03559cfd1);
+            
+        
+
+        marker_22ca18d0c0b1f3cd2733de83235074ae.bindPopup(popup_52386638ec92294313a7290b994910da)
+        ;
+
+        
+    
+    
+            marker_22ca18d0c0b1f3cd2733de83235074ae.bindTooltip(
+                `<div>
+                     Suncorp Stadium
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_22ca18d0c0b1f3cd2733de83235074ae.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_22ca18d0c0b1f3cd2733de83235074ae.setIcon(icon_1a54d40d6338320376bf47438e973842);
+            
+    
+            var marker_5e7677424857844c30fa7aba6704e104 = L.marker(
+                [-33.849087211758, 151.061709183486],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_96395f5a53cc08dabaf2a3a9cb2cfb94 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8d0471e252e836e7e2be931c6e5f7063 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7d35aa3984ba50958d8bf5c8fac0071 = $(`<div id="html_b7d35aa3984ba50958d8bf5c8fac0071" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Accor Stadium<br><b>Address:</b> Edwin Flack Ave, Sydney Olympic Park NSW 2127<br><b>City/Region:</b> Sydney, NSW</div>`)[0];
+                popup_8d0471e252e836e7e2be931c6e5f7063.setContent(html_b7d35aa3984ba50958d8bf5c8fac0071);
+            
+        
+
+        marker_5e7677424857844c30fa7aba6704e104.bindPopup(popup_8d0471e252e836e7e2be931c6e5f7063)
+        ;
+
+        
+    
+    
+            marker_5e7677424857844c30fa7aba6704e104.bindTooltip(
+                `<div>
+                     Accor Stadium
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_5e7677424857844c30fa7aba6704e104.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_5e7677424857844c30fa7aba6704e104.setIcon(icon_96395f5a53cc08dabaf2a3a9cb2cfb94);
+            
+    
+            var marker_96ce87a5f5d3748ed5c31cda1089d243 = L.marker(
+                [34.671007937133, 135.479200089108],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_ff3f7cb5f7ad6671aa9ca0382fa88c84 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_45aa01b969a678f34ca782c4f4e7dafb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0c48ca917bc1fbc12363682b8fd9e61f = $(`<div id="html_0c48ca917bc1fbc12363682b8fd9e61f" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Osaka Dome (Kyocera Dome Osaka)<br><b>Address:</b> 3 Chome-2-1 Chiyozaki, Nishi Ward, Osaka 550-0023<br><b>City/Region:</b> Osaka, Japan</div>`)[0];
+                popup_45aa01b969a678f34ca782c4f4e7dafb.setContent(html_0c48ca917bc1fbc12363682b8fd9e61f);
+            
+        
+
+        marker_96ce87a5f5d3748ed5c31cda1089d243.bindPopup(popup_45aa01b969a678f34ca782c4f4e7dafb)
+        ;
+
+        
+    
+    
+            marker_96ce87a5f5d3748ed5c31cda1089d243.bindTooltip(
+                `<div>
+                     Osaka Dome (Kyocera Dome Osaka)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_96ce87a5f5d3748ed5c31cda1089d243.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_96ce87a5f5d3748ed5c31cda1089d243.setIcon(icon_ff3f7cb5f7ad6671aa9ca0382fa88c84);
+            
+    
+            var marker_9c23b64af95bec3925aee2398adb2093 = L.marker(
+                [35.705581216936, 139.751913370449],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_78242fc47ea76a4c0d1303c83f1cd547 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3884b70014a9dc2ac3a8f5fb5507a581 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4ed5cc3f271b4e0d7e88c491374188ac = $(`<div id="html_4ed5cc3f271b4e0d7e88c491374188ac" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Tokyo Dome<br><b>Address:</b> 1-3-61 Koraku, Bunkyo City, Tokyo 112-0004<br><b>City/Region:</b> Tokyo, Japan</div>`)[0];
+                popup_3884b70014a9dc2ac3a8f5fb5507a581.setContent(html_4ed5cc3f271b4e0d7e88c491374188ac);
+            
+        
+
+        marker_9c23b64af95bec3925aee2398adb2093.bindPopup(popup_3884b70014a9dc2ac3a8f5fb5507a581)
+        ;
+
+        
+    
+    
+            marker_9c23b64af95bec3925aee2398adb2093.bindTooltip(
+                `<div>
+                     Tokyo Dome
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_9c23b64af95bec3925aee2398adb2093.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_9c23b64af95bec3925aee2398adb2093.setIcon(icon_78242fc47ea76a4c0d1303c83f1cd547);
+            
+    
+            var marker_9772253de8d9da7bfd332e00da97ef14 = L.marker(
+                [33.5318831138, -112.261108687269],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_cc8a333a21d7423056a8abe0ef3deea9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_74bb45d347c0350adc39e3cf31bda492 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b775da232b3f77ceb522c70d81d6d25d = $(`<div id="html_b775da232b3f77ceb522c70d81d6d25d" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Desert Diamond Arena<br><b>Address:</b> 9400 W Maryland Ave, Glendale, AZ 85305<br><b>City/Region:</b> Glendale, AZ</div>`)[0];
+                popup_74bb45d347c0350adc39e3cf31bda492.setContent(html_b775da232b3f77ceb522c70d81d6d25d);
+            
+        
+
+        marker_9772253de8d9da7bfd332e00da97ef14.bindPopup(popup_74bb45d347c0350adc39e3cf31bda492)
+        ;
+
+        
+    
+    
+            marker_9772253de8d9da7bfd332e00da97ef14.bindTooltip(
+                `<div>
+                     Desert Diamond Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_9772253de8d9da7bfd332e00da97ef14.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_9772253de8d9da7bfd332e00da97ef14.setIcon(icon_cc8a333a21d7423056a8abe0ef3deea9);
+            
+    
+            var marker_6edb1adf16bc50ff285fcb6abc47cf51 = L.marker(
+                [32.740580617795, -97.368601615247],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_cc279ac0bba5cd7df054d1162ab26d2b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fd21b590dc81a4fc4877a48d8cde3fd5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5aa9e153a7d11d28a6a8a9417ff565ef = $(`<div id="html_5aa9e153a7d11d28a6a8a9417ff565ef" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Dickies Arena<br><b>Address:</b> 1911 Montgomery St, Fort Worth, TX 76107<br><b>City/Region:</b> Fort Worth, TX</div>`)[0];
+                popup_fd21b590dc81a4fc4877a48d8cde3fd5.setContent(html_5aa9e153a7d11d28a6a8a9417ff565ef);
+            
+        
+
+        marker_6edb1adf16bc50ff285fcb6abc47cf51.bindPopup(popup_fd21b590dc81a4fc4877a48d8cde3fd5)
+        ;
+
+        
+    
+    
+            marker_6edb1adf16bc50ff285fcb6abc47cf51.bindTooltip(
+                `<div>
+                     Dickies Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_6edb1adf16bc50ff285fcb6abc47cf51.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_6edb1adf16bc50ff285fcb6abc47cf51.setIcon(icon_cc279ac0bba5cd7df054d1162ab26d2b);
+            
+    
+            var marker_b9332fd01f981782e9493a4b3d1b7e0b = L.marker(
+                [33.75706101477, -84.396748647279],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_b64296f4a5d8a6b316232b9dfcfdf33e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_137dc1fc3bee61e55754f7c0aaf57aba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c16d524a091834f393d48ac5ad2cb913 = $(`<div id="html_c16d524a091834f393d48ac5ad2cb913" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> State Farm Arena<br><b>Address:</b> 1 State Farm Dr, Atlanta, GA 30303<br><b>City/Region:</b> Atlanta, GA</div>`)[0];
+                popup_137dc1fc3bee61e55754f7c0aaf57aba.setContent(html_c16d524a091834f393d48ac5ad2cb913);
+            
+        
+
+        marker_b9332fd01f981782e9493a4b3d1b7e0b.bindPopup(popup_137dc1fc3bee61e55754f7c0aaf57aba)
+        ;
+
+        
+    
+    
+            marker_b9332fd01f981782e9493a4b3d1b7e0b.bindTooltip(
+                `<div>
+                     State Farm Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_b9332fd01f981782e9493a4b3d1b7e0b.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_b9332fd01f981782e9493a4b3d1b7e0b.setIcon(icon_b64296f4a5d8a6b316232b9dfcfdf33e);
+            
+    
+            var marker_168ada24fe01ef4ee0c138c6c076fb72 = L.marker(
+                [30.281157014091, -97.730688013942],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_1b7b69dd45e29e6e021dcd5dcefb4d00 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c88f0b1a329719b8df2c7f8b07e79c31 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d49f4f7e962b8bfea18e9860f48bcc14 = $(`<div id="html_d49f4f7e962b8bfea18e9860f48bcc14" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Moody Center<br><b>Address:</b> 2001 Robert Dedman Dr, Austin, TX 78712<br><b>City/Region:</b> Austin, TX</div>`)[0];
+                popup_c88f0b1a329719b8df2c7f8b07e79c31.setContent(html_d49f4f7e962b8bfea18e9860f48bcc14);
+            
+        
+
+        marker_168ada24fe01ef4ee0c138c6c076fb72.bindPopup(popup_c88f0b1a329719b8df2c7f8b07e79c31)
+        ;
+
+        
+    
+    
+            marker_168ada24fe01ef4ee0c138c6c076fb72.bindTooltip(
+                `<div>
+                     Moody Center
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_168ada24fe01ef4ee0c138c6c076fb72.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_168ada24fe01ef4ee0c138c6c076fb72.setIcon(icon_1b7b69dd45e29e6e021dcd5dcefb4d00);
+            
+    
+            var marker_38d657ae3ce56460ae777ee641e66f2d = L.marker(
+                [38.898086323821, -77.020959508149],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_15ce4787928702f467376912d08f95cb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1aa8c306caa092945fd05de2315ab7e6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ec563632fa02e05d98c28f1c11fb1893 = $(`<div id="html_ec563632fa02e05d98c28f1c11fb1893" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Capital One Arena<br><b>Address:</b> 601 F St NW, Washington, DC 20004<br><b>City/Region:</b> Washington, DC</div>`)[0];
+                popup_1aa8c306caa092945fd05de2315ab7e6.setContent(html_ec563632fa02e05d98c28f1c11fb1893);
+            
+        
+
+        marker_38d657ae3ce56460ae777ee641e66f2d.bindPopup(popup_1aa8c306caa092945fd05de2315ab7e6)
+        ;
+
+        
+    
+    
+            marker_38d657ae3ce56460ae777ee641e66f2d.bindTooltip(
+                `<div>
+                     Capital One Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_38d657ae3ce56460ae777ee641e66f2d.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_38d657ae3ce56460ae777ee641e66f2d.setIcon(icon_15ce4787928702f467376912d08f95cb);
+            
+    
+            var marker_ebfd3469e20abd02ad00c17d33ad8e51 = L.marker(
+                [42.366276668555, -71.062189103599],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_99973f34c6eb85dff55396fd7169f864 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b995ee50216992b87e4c2af011a461de = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9795bd9f79f7a4fe422cc669e465080d = $(`<div id="html_9795bd9f79f7a4fe422cc669e465080d" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> TD Garden<br><b>Address:</b> 100 Legends Way, Boston, MA 02114<br><b>City/Region:</b> Boston, MA</div>`)[0];
+                popup_b995ee50216992b87e4c2af011a461de.setContent(html_9795bd9f79f7a4fe422cc669e465080d);
+            
+        
+
+        marker_ebfd3469e20abd02ad00c17d33ad8e51.bindPopup(popup_b995ee50216992b87e4c2af011a461de)
+        ;
+
+        
+    
+    
+            marker_ebfd3469e20abd02ad00c17d33ad8e51.bindTooltip(
+                `<div>
+                     TD Garden
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_ebfd3469e20abd02ad00c17d33ad8e51.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_ebfd3469e20abd02ad00c17d33ad8e51.setIcon(icon_99973f34c6eb85dff55396fd7169f864);
+            
+    
+            var marker_ac3e7790a1f4400ffff38926d6df0f58 = L.marker(
+                [45.496039206859, -73.569437625617],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_5a9dbc49974e834a29b14a0d2454d4fe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0fbe863ca7f40737c2faec91174edb4a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bc803a1ffe936418e0953bcc8b35935d = $(`<div id="html_bc803a1ffe936418e0953bcc8b35935d" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Bell Centre<br><b>Address:</b> 1909 Avenue des Canadiens-de-Montréal, Montréal, QC H4B 5G0<br><b>City/Region:</b> Montreal, QC</div>`)[0];
+                popup_0fbe863ca7f40737c2faec91174edb4a.setContent(html_bc803a1ffe936418e0953bcc8b35935d);
+            
+        
+
+        marker_ac3e7790a1f4400ffff38926d6df0f58.bindPopup(popup_0fbe863ca7f40737c2faec91174edb4a)
+        ;
+
+        
+    
+    
+            marker_ac3e7790a1f4400ffff38926d6df0f58.bindTooltip(
+                `<div>
+                     Bell Centre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_ac3e7790a1f4400ffff38926d6df0f58.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_ac3e7790a1f4400ffff38926d6df0f58.setIcon(icon_5a9dbc49974e834a29b14a0d2454d4fe);
+            
+    
+            var marker_5db5f68d8954de357444d2b27db8ab58 = L.marker(
+                [44.944763027571, -93.100527801132],
+                {
+}
+            ).addTo(map_3731603fbd143a3cc0654d3dda6125b8);
+        
+    
+            var icon_ca0a9f5ef627488da9532da1fe52b6db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1e54bd9363075ecd66e448c74b6c437d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7f064b41d449fa32a8446ac07be87270 = $(`<div id="html_7f064b41d449fa32a8446ac07be87270" style="width: 100.0%; height: 100.0%;"><b>Venue:</b> Grand Casino Arena<br><b>Address:</b> 199 W Kellogg Blvd, Saint Paul, MN 55102<br><b>City/Region:</b> Saint Paul, MN</div>`)[0];
+                popup_1e54bd9363075ecd66e448c74b6c437d.setContent(html_7f064b41d449fa32a8446ac07be87270);
+            
+        
+
+        marker_5db5f68d8954de357444d2b27db8ab58.bindPopup(popup_1e54bd9363075ecd66e448c74b6c437d)
+        ;
+
+        
+    
+    
+            marker_5db5f68d8954de357444d2b27db8ab58.bindTooltip(
+                `<div>
+                     Grand Casino Arena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                {
+                    const element = marker_5db5f68d8954de357444d2b27db8ab58.getElement();
+                    if (element) {
+                        element.style.width = "";
+                        element.style.height = "";
+                        element.style.marginLeft = "";
+                        element.style.marginTop = "";
+                    }
+                }
+                marker_5db5f68d8954de357444d2b27db8ab58.setIcon(icon_ca0a9f5ef627488da9532da1fe52b6db);
+            
+</script>
+</html>
